@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -21,12 +22,7 @@ import org.springframework.stereotype.Component;
 @Entity(name="activity")
 @Table(name="activity")
 public class TestModel {
-	public AnimalGroup getFk_AnimalGroup() {
-		return fk_AnimalGroup;
-	}
-	public void setFk_AnimalGroup(AnimalGroup fk_AnimalGroup) {
-		this.fk_AnimalGroup = fk_AnimalGroup;
-	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="object_id",unique=true,nullable=false)
@@ -38,7 +34,7 @@ public class TestModel {
             fetch = FetchType.EAGER)
 	@JoinColumn(name="test_type")
 	private TestType testTypeDetails;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fk_AnimalGroup")
 	private AnimalGroup fk_AnimalGroup;
@@ -62,6 +58,13 @@ public class TestModel {
 	}
 	public void setTestTypeDetails(TestType testType) {
 		this.testTypeDetails = testType;
+	}
+	
+	public AnimalGroup getFk_AnimalGroup() {
+		return fk_AnimalGroup;
+	}
+	public void setFk_AnimalGroup(AnimalGroup fk_AnimalGroup) {
+		this.fk_AnimalGroup = fk_AnimalGroup;
 	}
 	
 	

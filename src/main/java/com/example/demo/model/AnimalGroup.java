@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -44,15 +45,15 @@ public class AnimalGroup {
 	@OneToMany(mappedBy = "fk_AnimalGroup")
 	private List<TestModel> test;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinColumns({@JoinColumn(name="fk_animalGroup_id"),@JoinColumn(name="fk_address_id")})
-	/*
-	 * @JoinTable( name = "AnimalGroup_Addresses", joinColumns = { @JoinColumn(name
-	 * = "fk_animalGroup_id") }, inverseJoinColumns = { @JoinColumn(name =
-	 * "fk_address_id") } )
-	 */ 
-     @JsonIgnoreProperties("animalGroups")
-	Set<Address> addresses;
+	 @ManyToMany(cascade = CascadeType.ALL)
+	    @JoinColumns({@JoinColumn(name="fk_animalGroup_id"),@JoinColumn(name="fk_address_id")})
+	    /*
+	     * @JoinTable( name = "AnimalGroup_Addresses", joinColumns = { @JoinColumn(name
+	     * = "fk_animalGroup_id") }, inverseJoinColumns = { @JoinColumn(name =
+	     * "fk_address_id") } )
+	     */
+	     @JsonIgnoreProperties("animalGroups")
+	    Set<Address> addresses;
 
 	public Integer getId() {
 		return id;

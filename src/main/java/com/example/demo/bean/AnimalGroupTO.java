@@ -69,5 +69,13 @@ public class AnimalGroupTO {
 		  agTo.setAddresses(agModel.getAddresses());
 		  return agTo;
 	}
+	
+	public static AnimalGroup mapModel(AnimalGroupTO agTo) {
+		AnimalGroup agModel= new AnimalGroup();
+		agModel.setAnimalGroupNumber(agTo.animalGroupNumber);
+		agModel.setAgType(agTo.type);
+		agModel.setAddresses(agTo.getAddresses());
+		return agModel;
+	}
 
 }

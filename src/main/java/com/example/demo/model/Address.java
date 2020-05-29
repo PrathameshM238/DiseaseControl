@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Component
 @Entity
 @Table(name="address")
+@JsonIgnoreProperties
 public class Address {
 	
 	@Id
@@ -29,9 +30,17 @@ public class Address {
 	@Column(name= "pin_code")
 	private String pinCode;
 	
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="id")
+	 * 
+	 * @JsonIgnoreProperties("id")
+	 */
 	@ManyToMany(mappedBy = "addresses")
-	@JsonIgnoreProperties("addresses")
-	private Set<AnimalGroup> animalGroups;
+    @JsonIgnoreProperties("addresses")
+    private Set<AnimalGroup> animalGroups;
+	
 
 	public Integer getId() {
 		return id;
